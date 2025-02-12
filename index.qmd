@@ -45,7 +45,6 @@ Que tipo de **variação** ocorre dentro das minhas variáveis?
 Que tipo de **covariação** ocorre entre as minhas variáveis?
 :::
 
-
 ## {background-image="figs/variacao_e_covariacao.png" auto-animate="true"}
 
 # Histograma {background-image="figs/histograma.png"}
@@ -55,7 +54,6 @@ Que tipo de **covariação** ocorre entre as minhas variáveis?
 # Boxplot {background-image="figs/boxplot.png"}
 
 # Densidade de \ Probabilidade {background-image="figs/densidade.png"}
-
 
 ## Resolução dos exercícios
 
