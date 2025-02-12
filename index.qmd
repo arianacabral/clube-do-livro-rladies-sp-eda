@@ -1,0 +1,64 @@
+---
+title: "Análise Exploratória de Dados"
+author: "Ariana Moura Cabral"
+format:
+  revealjs:
+    transition: slide
+    transition-speed: fast
+    auto-animate-duration: 0.8
+    lang: pt-br
+    chalkboard: true
+    preview-links: auto
+    slide-number: true
+    show-slide-number: all 
+    theme: [serif, custom.scss]
+    footer: "Clube do Livro | RLadies São Paulo <br/> 2025"
+---
+
+## O que é EDA? {auto-animate="true"}
+
+<br>
+
+::: {.fragment .fade-up style="margin-top:55px; font-size: 2em; color:black; text-align: center;"}
+é um **processo sistemático de investigação** dos dados
+:::
+
+## EDA é mais do que isso... {background-image="figs/eda_estado_espirito.png" auto-animate="true"}
+
+<br>
+
+::: {style="margin-top:100px; font-size: 2.25em; color:black; text-align: center;"}
+um **estado de espírito**
+:::
+
+## Ciclo da EDA
+
+![](figs/ciclo_eda.png){fig-align="center"}
+
+## Mas, por onde começar? {background-image="figs/ciclo_eda_background.png" auto-animate="true"}
+
+::: {.fragment .fade-up style="margin-top:100px; font-size: 1.74em; color:black; text-align: center;"}
+Que tipo de **variação** ocorre dentro das minhas variáveis?
+:::
+
+::: {.fragment .fade-up style="margin-top:50px; font-size: 1.75em; color:black; text-align: center;"}
+Que tipo de **covariação** ocorre entre as minhas variáveis?
+:::
+
+
+## {background-image="figs/variacao_e_covariacao.png" auto-animate="true"}
+
+# Histograma {background-image="figs/histograma.png"}
+
+# Polígono de \ Frequência {background-image="figs/poligono_freq.png"}
+
+# Boxplot {background-image="figs/boxplot.png"}
+
+# Densidade de \ Probabilidade {background-image="figs/densidade.png"}
+
+
+## Resolução dos exercícios
+
+Você pode encontrar **possíveis soluções** dos exercícios presentes no capítulo [**aqui**](https://pt-r4ds-solutions.netlify.app).
+
+[![](figs/site_solucao.png){fig-alt="Soluções dos Exercícios"}](https://pt-r4ds-solutions.netlify.app)

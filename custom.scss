@@ -1,0 +1,110 @@
+// importing fonts
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&display=swap');
+
+// fonts
+$font-family-sans-serif: 'Open Sans', Tahoma, sans-serif !default;
+
+// headings
+$presentation-heading-font: 'Poppins',  Tahoma, sans-serif  !default;
+$presentation-heading-color: #9f2d44 !default;
+$h1-font-size: 1.6em !default;
+$h2-font-size: 1.3em !default;
+$h3-font-size: 1.15em !default;
+
+//code
+$code-color: #a84256 !default;
+$font-family-monospace: 'Inconsolata', monospace  !default;
+
+// general  
+$body-bg: #fff;
+$body-color: #000000;
+$link-color: #a84256;
+$presentation-font-size-root: 35px;
+
+/*-- scss:rules --*/
+.reveal pre code {
+  background-color: #f8f8f8;
+  font-size: 1em;
+  padding: 0.5em;
+  line-height: 1.2em;
+}
+
+.subtitle, .author {
+  color: $presentation-heading-color;
+  font-size: $h2-font-size;
+}
+
+.reveal .panel-tabset [role=tab] {
+    font-size: 0.8em;
+}
+
+div.footer.footer {
+  font-size: .3em;
+  font-weight: bold;
+  color: #9f2d44;
+}
+
+/*callout*/
+
+div.callout-exercise.callout {
+  border-left-color:  #9f2d44;
+}
+
+div.callout.callout {
+  border-left-color:  #9f2d44;
+}
+
+div.callout-exercise.callout-style-default>.callout-header {
+  background-color:  #9f2d44;
+}
+
+/*link*/
+a {
+  color:  #9f2d44;
+  font-style: italic;
+}
+
+/*bold*/
+strong {
+    color:  #9f2d44;
+}
+
+/*tables*/
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.8em;
+}
+
+table td, table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table tr:nth-child(even){
+  background-color: white;
+}
+
+table tr:hover {
+  background-color: #ddd;
+}
+
+tr.header {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #772233;
+  color: white;
+}
+
+table tr.header:hover {
+  background-color: #843847;
+}
+
+/**/
+.card{
+  background-color: #e3d2d6;
+}
+
+.card p{
+  margin: 10px;
+}
