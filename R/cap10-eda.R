@@ -1,6 +1,5 @@
 # Análise Exploratória de Dados -------------------------------------------
 
-
 ## Carregando os pacotes
 library(dados)
 library(ggplot2)
@@ -102,8 +101,6 @@ diamante2 <-  diamante |>
 ggplot(diamante2, aes(x = x, y = y)) +
   geom_point(na.rm = TRUE) +
   theme_minimal()
-
-
 
 diamante2 <- diamante2 |>
   dplyr::mutate(
