@@ -147,34 +147,85 @@ ggplot(voos2, aes(x = saida_programada_horas,
 
 # Covariação --------------------------------------------------------------
 
+library(dados)
+library(ggplot2)
+
 # Uma variável categórica e uma numérica ----
 
 ## EXEMPLO 5
 # base de dados: diamante
 # há associação dos preços dos diamantes com a qualidade de corte?
 
+ggplot(data = diamante, 
+       aes(x = preco, fill = corte)) +
+  geom_histogram() +
+  theme_minimal()
+
+ggplot(data = diamante,
+       aes(x = preco, color = corte)) + 
+  geom_freqpoly() + 
+  theme_minimal()
 
 # como não levar em conta as frequências individuais?
 
+ggplot(data = diamante,
+       aes(x = preco, y = after_stat(density), color = corte)) +
+  geom_freqpoly() + 
+  theme_minimal()
 
 # como simplificar a nossa representação?
 
+ggplot(data = diamante, 
+       aes(x = corte, y = preco, color = corte)) +
+  geom_boxplot() + 
+  theme_minimal()
 
 # e se os dados não estivessem ordenados? (forcats::fct_reorder)
 ## EXEMPLO 6
 # base de dados: milhas
 # como o consumo de combustível na rodovia varia entre as classes de carros?
 
+ggplot(data = milhas,
+       aes(x = classe, y = rodovia)) +
+  geom_boxplot() + 
+  theme_minimal()
+
+ggplot(data = milhas,
+       aes(x = forcats::fct_reorder(classe, rodovia, median), y = rodovia)) +
+  geom_boxplot() + 
+  theme_minimal()
+
 
 # e se tivessemos nomes longos nos textos dos eixos?
 
 # 1ª opção: trocar x por y
 
+ggplot(data = milhas,
+       aes(x = rodovia,
+           y = forcats::fct_reorder(classe, rodovia, median))) +
+  geom_boxplot() + 
+  theme_minimal()
 
 # 2ª opção: usar coord_flip()
 
+ggplot(data = milhas,
+       aes(x = forcats::fct_reorder(classe, rodovia, median),
+           y = rodovia)) +
+  geom_boxplot() + 
+  theme_minimal() +
+  coord_flip()
 
+ggplot(data = milhas,
+       aes(x = forcats::fct_rev(forcats::fct_reorder(classe, rodovia, median)),
+           y = rodovia)) +
+  geom_boxplot() + 
+  theme_minimal()
 
+ggplot(data = milhas,
+       aes(x = forcats::fct_reorder(classe, rodovia, function(x){-median(x)}),
+           y = rodovia)) +
+  geom_boxplot() + 
+  theme_minimal()
 
 # Duas variáveis categóricas ----
 
@@ -184,10 +235,19 @@ ggplot(voos2, aes(x = saida_programada_horas,
 
 # geom_count()
 
+ggplot(data = diamante,
+       aes(x = corte, y = cor)) +
+  geom_count()
+
+
 # dplyr + geom_tile()
+diamante2 <- diamante |>
+  dplyr::group_by(corte, cor) |>
+  dplyr::count()
 
-
-
+ggplot(data = diamante2,
+       aes(x = corte, y = cor, fill = n)) +
+  geom_tile()
 
 # Duas variáveis númericas ----
 
@@ -195,18 +255,43 @@ ggplot(voos2, aes(x = saida_programada_horas,
 # base de dados: diamante
 # há associação entre quilate e preço?
 
-
 # gráfico de dispersão
 
+ggplot(data = diamante,
+       aes(x = quilate, y = preco)) +
+  geom_point()
 
+ggplot(data = diamante,
+       aes(x = quilate, y = preco)) +
+  geom_point(alpha = 0.01)
 
 # mapa de calor geom_bin2d() e geom_hex()
+ggplot(data = diamante, 
+       aes(x = quilate, 
+           y = preco)) + 
+  geom_bin2d()
 
+library(hexbin)
+
+ggplot(data = diamante, 
+       aes(x = quilate, 
+           y = preco)) + 
+  geom_hex()
 
 # discretização de uma das variáveis
+ggplot(data = diamante,
+       aes(x = quilate,
+           y = preco,
+           group = cut_interval(quilate, 10),
+           colour = cut_interval(quilate, 10))) +
+  geom_boxplot()
 
-
-
+ggplot(data = diamante,
+       aes(x = quilate,
+           y = preco,
+           group = cut_width(quilate, 0.5),
+           color = cut_width(quilate, 0.5))) +
+  geom_boxplot()
 
 # Padrões e modelos -------------------------------------------------------
 
@@ -215,3 +300,58 @@ ggplot(voos2, aes(x = saida_programada_horas,
 # como entender a relação entre preço e corte, eliminando a 
 # influência do valor do quilate sobre o preço?
 
+ggplot(data = diamante,
+       aes(x = quilate, y = preco)) +
+  geom_point()
+
+ggplot(data = diamante, 
+       aes(x = corte, y = preco)) +
+  geom_boxplot()
+
+# transformando os dados
+diamante <- diamante |>
+  dplyr::mutate(
+    preco_log = log(preco),
+    quilate_log = log(quilate)
+  )
+
+# visualizando 
+ggplot(data = diamante,
+       aes(x = quilate_log, y = preco_log)) +
+  geom_point()
+
+ggplot(data = diamante,
+       aes(x = quilate_log, y = preco_log)) +
+  geom_point() + 
+  geom_smooth(method = lm)
+
+# lm()
+
+# modelagem
+res.lm <- parsnip::linear_reg() |>
+  parsnip::fit(preco_log ~ quilate_log, data = diamante)
+
+
+# lm(preco_log ~ quilate_log * var2)
+
+broom::tidy(res.lm) |>
+  View()
+
+diamante2 <- broom::augment(res.lm, new_data = diamante)
+
+ggplot(data = diamante2) +
+  geom_point(
+    aes(x = quilate_log, y = preco_log)
+  ) + 
+  geom_point(
+    aes(x = quilate_log, y = .pred), color = "red"
+  )
+
+diamante2 <- diamante2 |>
+  dplyr::mutate(
+    preco_sem_quilate = exp(.resid)
+  )
+
+ggplot(diamante2, 
+       aes(x = corte, y = preco_sem_quilate)) +
+  geom_boxplot()
