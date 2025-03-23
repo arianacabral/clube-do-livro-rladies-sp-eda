@@ -10,32 +10,6 @@ knitr::opts_chunk$set(
 ```
 
 
-```{=html}
-
-<style>
-
-* {
-  box-sizing: border-box;
-}
-
-h1, h2, h3{
-  color: #9f2d44
-}
-
-/*link*/
-a {
-  color: #9f2d44;
-  font-style: italic;
-}
-
-/*bold*/
-b, strong {
-  color: #9f2d44;
-}
-
-</style>
-```
-
 # Análise Exploratória de Dados
 
 <img src="figs/livro.png" align="right" width="200px"/>
