@@ -18,4 +18,8 @@ Este repositório contém os materiais referentes a apresentação do Capítulo 
 
 ### Apresentação
 
+Data | Apresentação
+ --- | ---                
+**11/02/2025** | [<img src="figs/clube_do_livro_encontro10.png" width="100%;"/>](https://www.youtube.com/watch?v=zgLpS4TDnFo)<br /> |
+**11/03/2025** | [<img src="figs/clube_do_livro_encontro11.png" width="100%;"/>](https://www.youtube.com/watch?v=BxccJWsWlcU)<br />
 
